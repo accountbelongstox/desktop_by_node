@@ -1,0 +1,215 @@
+const Utils = require('ee-core/utils');
+Utils.getPackage() - 获取项目根目录package.json内容。
+Utils.getMAC(iface) - 如果提供iface [String]，则将MAC地址提取限制到此接口，用于获取一个正确的MAC地址。
+Utils.isMAC(macAddress) - macAddress [String]为MAC地址，判断是否为有效的Mac地址。
+Utils.machineId(original) - original [Boolean]决定是否返回机器ID的原始值，否则返回其sha-256散列值，默认为false。异步获取machine id，返回Promise对象。
+Utils.machineIdSync(original) - original [Boolean]决定是否返回机器ID的原始值，否则返回其sha-256散列值，默认为false。同步获取machine id。
+
+const UtilsHelper = require('ee-core/utils/helper');
+UtilsHelper.fnDebounce(fn, delayTime, isImediate, args) - 去除抖动器。fn [Function]为回调函数, delayTime [Time]为延迟时间(ms), isImediate [Boolean]决定是否需要立即调用, args [type]为回调函数传入参数。
+UtilsHelper.getRandomString() - 生成随机10位字符串。
+UtilsHelper.mkdir(filepath) - filepath [String]为文件路径，用于创建文件夹。
+UtilsHelper.chmodPath(path, mode) - path [String]为文件路径, mode [String]为权限如755、777，用于修改文件权限。
+UtilsHelper.compareVersion(v1, v2) - v1 [String]和v2 [String]为版本号，用于版本号比较。
+UtilsHelper.stringify(obj, ignore) - obj [String]为对象, ignore [Array]决定忽略对象中的属性，用于序列化对象为JSON字符串。
+UtilsHelper.validValue(value) - value [String]，判断给定的参数是否为有效值，即非 undefined / null / ''。
+
+const UtilsIs = require('ee-core/utils/is');
+UtilsIs.renderer() - 是否为渲染进程。
+UtilsIs.main() - 是否为主进程。
+UtilsIs.osx() - 是否为MacOS平台。
+UtilsIs.macOS() - 是否为MacOS平台。
+UtilsIs.windows() - 是否为windows平台。
+UtilsIs.linux() - 是否为linux平台。
+UtilsIs.x86() - 是否为x86架构。
+UtilsIs.x64() - 是否为64架构。
+UtilsIs.sandbox() - 是否运行在沙盒中（MacOS）。
+UtilsIs.mas() - 是否正在运行，从MacOS应用商店中启动。
+UtilsIs.windowsStore() - 是否正在运行，从windows应用商店中启动。
+UtilsIs.all() - 检查传入的多个参数（函数）是否都为true。
+UtilsIs.none() - 检查传入的多个参数（函数）是否都为false。
+UtilsIs.one() - 检查传入的多个参数（函数）有一个为true。
+UtilsIs.release(requested) - 检查给定版本是否与操作系统相同。
+UtilsIs.gtRelease(requested) - 检查给定版本是否大于当前OS版本。
+UtilsIs.ltRelease(requested) - 检查给定版本是否小于当前OS版本。
+
+const UtilsJson = require('ee-core/utils/json');
+UtilsJson.strictParse(str) - 字符串转对象。
+UtilsJson.readSync(filepath) - 同步读取一个json文件。
+UtilsJson.writeSync(filepath, str, options) - 同步写入一个对象或对象字符串到文件。
+UtilsJson.read(filepath) - 异步读取一个json文件。返还promise。
+UtilsJson.write(filepath, str, options) - 异步写入一个对象或对象字符串到文件。
+
+const UtilsTime = require('ee-core/utils/time');
+UtilsTime.humanizeToMs(value) - 将各种时间格式转换为毫秒。如果参数为number类型，直接返回；如果为undefined，将抛出一个错误。
+UtilsTime.ms(value) - 将各种时间格式转换为毫秒。
+UtilsTime.ms(value, { long: true }) - 将毫秒转换为完整的时间格式字符串。
+
+const Storage = require('ee-core/storage');
+Storage.connection(database, options = {}) - 连接数据库，如果没有则创建。
+jdb.setItem(key, value) - 创建一个存储的 key/value 对。
+jdb.getItem(key) - 获取存储的key值。
+jdb.db - 实例化后的jsondb对象。
+jdb.db.defaults(data).write() - 设置默认对象和数据。
+jdb.db.get(key).push(data).write() - 添加对象和数据。
+jdb.db.set(key, value).write() - 设置指定key的值。
+jdb.db.update(key, function).write() - 更新指定key的值。
+jdb.db.has(key).value() - 检查指定的key是否存在。
+jdb.db.set(key, []).write() - 设置指定key的数组值。
+jdb.db.get(key).filter(criteria).sortBy(key).take(number).value() - 排序、选择特定条件的数据。
+jdb.db.get(key).map(key).value() - 获取特定字段。
+jdb.db.get(key).size().value() - 获取指定key的数据数量。
+jdb.db.get(key).value() - 获取指定key的值。
+jdb.db.get(key).find(criteria).assign(data).write() - 更新指定条件的数据。
+jdb.db.unset(key).write() - 移除指定key的属性。
+jdb.db.get(key).cloneDeep().value() - 深拷贝指定key的数据。
+
+const HttpClient = require('ee-core/httpclient');
+const hc = new HttpClient();
+hc.curl(url, args, callback)                       // 发送http请求
+hc.request(url, args, callback)                    // 发送http请求
+this.app.curl(url, args, callback)                 // 发送http请求
+hc.curl(url, { method: String })                   // 设置请求方法
+hc.curl(url, { data: Object })                     // 发送请求数据
+hc.curl(url, { content: String|Buffer })           // 发送请求正文
+hc.curl(url, { files: Mixed })                     // 文件上传
+hc.curl(url, { stream: ReadStream })               // 发送请求正文的可读数据流
+hc.curl(url, { writeStream: WriteStream })         // 设置接受响应数据的可写数据流
+hc.curl(url, { consumeWriteStream: Boolean })      // 是否等待 writeStream 完全写完
+hc.curl(url, { method: String })                   // 设置请求方法
+hc.curl(url, { contentType: String })              // 设置请求数据格式
+hc.curl(url, { dataType: String })                 // 设置响应数据格式
+hc.curl(url, { fixJSONCtlChars: Boolean })         // 是否自动过滤响应数据中的特殊控制字符
+hc.curl(url, { headers: Object })                  // 自定义请求头
+hc.curl(url, { timeout: Number|Array })            // 请求超时时间
+hc.curl(url, { agent: HttpAgent })                 // 覆盖默认的 HttpAgent
+hc.curl(url, { httpsAgent: HttpsAgent })           // 覆盖默认的 HttpsAgent
+hc.curl(url, { auth: String })                     // 简单登录授权（Basic Authentication）
+hc.curl(url, { gzip: Boolean })                    // 是否支持 gzip 响应格式
+hc.curl(url, { timing: Boolean })                  // 是否开启请求各阶段的时间测量
+
+引入：const Socket = require('ee-core/socket');
+Socket.getSocketServer() - 获取socketServer实例对象。
+SocketServer.io.emit("event name", "data"); - 发送消息到客户端或其他语言的socket监听的事件。
+
+引入：const Socket = require('ee-core/socket');
+SocketServer.io - 实例化后的server对象。
+SocketServer.io.engine
+SocketServer.io.sockets
+SocketServer.io.adapter([value])
+SocketServer.io.attach(httpServer[, options])
+SocketServer.io.attach(port[, options])
+SocketServer.io.attachApp(app[, options])
+... [其他 SocketServer.io 的属性和方法]
+引入：const Socket = require('ee-core/socket');
+
+Socket.getHttpServer() - 获取httpServer实例对象。
+引入：const Socket = require('ee-core/socket');
+
+Socket.getIpcServer() - 获取ipcServer实例对象。
+引入：const { Koa } = Socket;
+
+Koa - 原始koa对象，等同于require('koa')。
+引入：const { IoServer } = Socket;
+
+IoServer - 原始socket.io对象，等同于require('socket.io')。
+引入：const { IoClient } = Socket;
+
+IoClient - 原始socket.io-client对象，等同于require('socket.io-client')。
+
+const shortid = require('shortid')
+shortid.generate() 生成一个唯一ID值
+
+this.app.config.env? - 环境变量，local-本地，prod-生产环境
+this.app.config.name? - 应用名称
+this.app.config.baseDir? - 框架中electron目录路径
+this.app.config.HOME? - APP根目录路径
+this.app.config.homeDir? - APP根目录路径
+this.app.config.root? - 获取root目录
+this.app.config.appUserDataDir? - APP在操作系统中的数据目录
+this.app.config.userHome? - 操作系统用户的home目录
+this.app.config.execDir? - APP的可执行程序根目录
+
+const Jobs = require('ee-core/jobs');
+Jobs.ChildJob()                     // 获取一个子进程任务类，基于node.js的child_process模块实现
+Jobs.ChildPoolJob()                 // 创建一批进程常驻内存并直接执行任务，基于node.js的child_process模块实现
+Jobs.RendererJob()                  // 获取一个任务类，基于electron的渲染进程实现（开发中，待验证）
+
+// 引入包
+const { ChildJob } = require('ee-core/jobs');
+ChildJob()                                // 实例化ChildJob对象
+ChildJob.job.jobs                         // 获取通过exec创建的实例对象集合
+ChildJob.job.exec(filepath, params, opt)  // 启动一个新进程，执行一个job文件
+ChildJob.job.execPromise(filepath, params, opt)  // exec()的异步语法，启动一个新进程，异步执行一个job文件
+ChildJob.job.getPids()                    // 获取当前pids数组
+ChildJob.job.on(eventName, callback)      // 监听一个事件对象，执行回调
+
+// ForkProcess 对象
+ForkProcess.emitter                       // 实例化后的EventEmitter对象
+ForkProcess.child                         // 通过child_process模块的fork方法出来的进程对象
+ForkProcess.pid                           // 子进程pid
+ForkProcess.dispatch(cmd, jobPath, params) // 分发任务
+ForkProcess.kill()                        // kill子进程
+ForkProcess.sleep()                       // sleep (仅Unix平台)
+ForkProcess.wakeup()                      // wakeup (仅Unix平台)
+
+// EventEmitter 方法列表
+EventEmitter.addListener(eventName, listener)
+EventEmitter.emit(eventName, ...args)
+EventEmitter.eventNames()
+EventEmitter.getMaxListeners()
+EventEmitter.listenerCount(eventName)
+EventEmitter.listeners(eventName)
+EventEmitter.off(eventName, listener)
+EventEmitter.on(eventName, listener)
+EventEmitter.once(eventName, listener)
+EventEmitter.prependListener(eventName, listener)
+EventEmitter.prependOnceListener(eventName, listener)
+EventEmitter.removeAllListeners(eventName)
+EventEmitter.removeListener(eventName, listener)
+EventEmitter.setMaxListeners(n)
+EventEmitter.rawListeners(eventName)
+EventEmitter[Symbol.for('nodejs.rejection')](err, eventName, ...args)
+
+// 引入包
+const { ChildPoolJob } = require('ee-core/jobs');
+// API调用清单
+ChildPoolJob()                                     // 实例化ChildPoolJob对象
+ChildPoolJob.pool.children                         // 返回通过run() / runPromise() 创建的实例对象集合
+ChildPoolJob.pool.max                              // 最大进程数
+ChildPoolJob.pool.strategy                         // 进程选举算法，默认为'polling'轮询
+ChildPoolJob.pool.weights                          // 权重
+ChildPoolJob.pool.LB                               // 负载均衡器
+ChildPoolJob.pool.create(number)                   // 创建一个池子，返回 pids
+ChildPoolJob.pool.run(filepath, params)            // 从进程池中选举一个进程，然后执行一个job文件
+ChildPoolJob.pool.runPromise(filepath, params)     // run()的异步语法
+ChildPoolJob.pool.getPids()                        // 获取当前pids数组
+ChildPoolJob.pool.getChildByPid(pid)               // 通过pid获取一个子进程对象
+ChildPoolJob.pool.killAll()                        // 关闭所有进程
+
+// EventEmitter 方法列表
+EventEmitter.addListener(eventName, listener)
+EventEmitter.emit(eventName, ...args)
+EventEmitter.eventNames()
+EventEmitter.getMaxListeners()
+EventEmitter.listenerCount(eventName)
+EventEmitter.listeners(eventName)
+EventEmitter.off(eventName, listener)
+EventEmitter.on(eventName, listener)
+EventEmitter.once(eventName, listener)
+EventEmitter.prependListener(eventName, listener)
+EventEmitter.prependOnceListener(eventName, listener)
+EventEmitter.removeAllListeners(eventName)
+EventEmitter.removeListener(eventName, listener)
+EventEmitter.setMaxListeners(n)
+EventEmitter.rawListeners(eventName)
+EventEmitter[Symbol.for('nodejs.rejection')](err, eventName, ...args)
+
+// ForkProcess 对象
+ForkProcess.emitter                                 // 实例化后的EventEmitter对象
+ForkProcess.child                                  // 通过child_process模块的fork方法出来的进程对象
+ForkProcess.pid                                    // 子进程pid
+ForkProcess.dispatch(cmd, jobPath, params)          // 分发任务
+ForkProcess.kill()                                 // kill子进程
+ForkProcess.sleep()                                // sleep (仅Unix平台)
+ForkProcess.wakeup()                               // wakeup (仅Unix平台)

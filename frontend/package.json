@@ -1,0 +1,58 @@
+{
+  "name": "pdd-scratch",
+  "version": "3.0.0",
+  "private": true,
+  "author": "开发联系:accountbelonstox@163.com",
+  "license": "SEE LICENSE IN <https://www.creative-tim.com/license>",
+  "description": "VueJS version of Soft UI Dashboard PRO by Creative Tim",
+  "homepage": "https://demos.creative-tim.com/vue-soft-ui-dashboard/",
+  "bugs": {
+    "url": "https://github.com/creativetimofficial/vue-soft-ui-dashboard/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/creativetimofficial/vue-soft-ui-dashboard.git"
+  },
+  "scripts": {
+    "dev": "vue-cli-service serve --port 3001",
+    "start": "vue-cli-service serve --port 3001",
+    "serve": "vue-cli-service serve --port 3001",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.1.1",
+    "@fortawesome/free-brands-svg-icons": "^6.1.1",
+    "@fortawesome/free-solid-svg-icons": "^6.1.1",
+    "@fortawesome/vue-fontawesome": "^3.0.0-5",
+    "@kyvg/vue3-notification": "^3.0.2",
+    "@popperjs/core": "2.10.2",
+    "bootstrap": "5.1.3",
+    "chart.js": "4.4.1",
+    "core-js": "3.35.1",
+    "jkanban": "^1.3.1",
+    "mitt": "^3.0.1",
+    "socket.io-client": "^4.7.2",
+    "terser": "^5.24.0",
+    "vue": "3.4.15",
+    "vue-flatpickr-component": "11.0.3",
+    "vue-router": "^4.0.0-0",
+    "vue-sweetalert2": "^5.0.5",
+    "vuex": "^4.0.2"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~5.0.8",
+    "@vue/cli-plugin-eslint": "~5.0.8",
+    "@vue/cli-plugin-router": "~5.0.8",
+    "@vue/cli-service": "~5.0.8",
+    "@vue/compiler-sfc": "3.4.15",
+    "@vue/eslint-config-prettier": "9.0.0",
+    "babel-eslint": "10.1.0",
+    "eslint": "6.7.2",
+    "eslint-plugin-prettier": "3.3.1",
+    "eslint-plugin-vue": "7.0.0",
+    "prettier": "2.2.1",
+    "sass": "1.43.3",
+    "sass-loader": "10.1.1"
+  }
+}

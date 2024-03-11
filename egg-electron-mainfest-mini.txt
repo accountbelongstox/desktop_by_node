@@ -1,0 +1,42 @@
+const Utils = require('ee-core/utils');
+Utils.getMAC(iface) - 如果提供iface [String]，则将MAC地址提取限制到此接口，用于获取一个正确的MAC地址。
+
+const UtilsHelper = require('ee-core/utils/helper');
+UtilsHelper.fnDebounce(fn, delayTime, isImediate, args) - 去除抖动器。fn [Function]为回调函数, delayTime [Time]为延迟时间(ms), isImediate [Boolean]决定是否需要立即调用, args [type]为回调函数传入参数。
+UtilsHelper.getRandomString() - 生成随机10位字符串。
+UtilsHelper.mkdir(filepath) - filepath [String]为文件路径，用于创建文件夹。
+UtilsHelper.chmodPath(path, mode) - path [String]为文件路径, mode [String]为权限如755、777，用于修改文件权限。
+UtilsHelper.compareVersion(v1, v2) - v1 [String]和v2 [String]为版本号，用于版本号比较。
+UtilsHelper.stringify(obj, ignore) - obj [String]为对象, ignore [Array]决定忽略对象中的属性，用于序列化对象为JSON字符串。
+UtilsHelper.validValue(value) - value [String]，判断给定的参数是否为有效值，即非 undefined / null / ''。
+
+const UtilsJson = require('ee-core/utils/json');
+UtilsJson.strictParse(str) - 字符串转对象。
+UtilsJson.readSync(filepath) - 同步读取一个json文件。
+UtilsJson.writeSync(filepath, str, options) - 同步写入一个对象或对象字符串到文件。
+UtilsJson.read(filepath) - 异步读取一个json文件。返还promise。
+UtilsJson.write(filepath, str, options) - 异步写入一个对象或对象字符串到文件。
+
+const UtilsTime = require('ee-core/utils/time');
+UtilsTime.humanizeToMs(value) - 将各种时间格式转换为毫秒。如果参数为number类型，直接返回；如果为undefined，将抛出一个错误。
+UtilsTime.ms(value) - 将各种时间格式转换为毫秒。
+UtilsTime.ms(value, { long: true }) - 将毫秒转换为完整的时间格式字符串。
+
+const Storage = require('ee-core/storage');
+Storage.connection(database, options = {}) - 连接数据库，如果没有则创建。
+jdb.setItem(key, value) - 创建一个存储的 key/value 对。
+jdb.getItem(key) - 获取存储的key值。
+jdb.db - 实例化后的jsondb对象。
+jdb.db.defaults(data).write() - 设置默认对象和数据。
+jdb.db.get(key).push(data).write() - 添加对象和数据。
+jdb.db.set(key, value).write() - 设置指定key的值。
+jdb.db.update(key, function).write() - 更新指定key的值。
+jdb.db.has(key).value() - 检查指定的key是否存在。
+jdb.db.set(key, []).write() - 设置指定key的数组值。
+jdb.db.get(key).filter(criteria).sortBy(key).take(number).value() - 排序、选择特定条件的数据。
+jdb.db.get(key).map(key).value() - 获取特定字段。
+jdb.db.get(key).size().value() - 获取指定key的数据数量。
+jdb.db.get(key).value() - 获取指定key的值。
+jdb.db.get(key).find(criteria).assign(data).write() - 更新指定条件的数据。
+jdb.db.unset(key).write() - 移除指定key的属性。
+jdb.db.get(key).cloneDeep().value() - 深拷贝指定key的数据。

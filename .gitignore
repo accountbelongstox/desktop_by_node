@@ -1,0 +1,48 @@
+out/
+logs/
+run/
+.idea/
+data/
+.vscode/launch.json
+public/electron/
+.yalc/
+chrome/
+build/
+library/
+
+# 忽略操作系统生成的文件
+.DS_Store
+Thumbs.db
+node_spider/
+node_provider/
+
+# 忽略编辑器和IDE生成的文件
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw*
+.next/
+
+# 忽略Node.js模块和npm包
+node_modules/
+
+# 忽略编译生成的文件
+dist/
+build/
+*.pyc
+*.class
+
+# 忽略临时文件
+*.log
+*.tmp
+
+# 忽略敏感信息配置文件
+.env.local
+.env.*.local
+
+# 忽略自定义的特定文件或文件夹
+custom_file.txt
+custom_folder/

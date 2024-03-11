@@ -1,0 +1,4 @@
+公钥解压于：C:\Users\administar\.ssh\
+命令：ssh -T git@gitee.com
+         ssh -T git@github.com
+*.pub文件内容拷贝至git仓库公钥设置

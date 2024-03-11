@@ -1,0 +1,57 @@
+{
+  "productName": "pdd_shanghuo_zhuaqu",
+  "appId": "com.gm-pdd.www",
+  "copyright": "© 2023 拼多多自动上货(抓取)软件 版权微信(Ch9816b)., Ltd.",
+  "directories": {
+    "output": "out"
+  },
+  "asar": false,
+  "files": [
+    "**/*",
+    "!frontend/",
+    "!doc/",
+    "!frontend_next/",
+    "!run/",
+    "!logs/",
+    "!data/",
+    "!chrome/"
+  ],
+  "extraResources": {
+    "from": "build/extraResources/",
+    "to": "extraResources"
+  },
+  "nsis": {
+    "oneClick": false,
+    "allowElevation": true,
+    "allowToChangeInstallationDirectory": true,
+    "installerIcon": "build/icons/icon.ico",
+    "uninstallerIcon": "build/icons/icon.ico",
+    "installerHeaderIcon": "build/icons/icon.ico",
+    "createDesktopShortcut": true,
+    "createStartMenuShortcut": true,
+    "shortcutName": "拼多多上货(抓取)"
+  },
+  "mac": {
+    "icon": "build/icons/icon.icns",
+    "artifactName": "${productName}-${os}-${version}-${arch}.${ext}",
+    "darkModeSupport": true,
+    "hardenedRuntime": false
+  },
+  "win": {
+    "icon": "build/icons/icon.ico",
+    "artifactName": "${productName}-${os}-${version}-${arch}.${ext}",
+    "target": [
+      {
+        "target": "nsis"
+      }
+    ]
+  },
+  "linux": {
+    "icon": "build/icons/icon.icns",
+    "artifactName": "${productName}-${os}-${version}-${arch}.${ext}",
+    "target": [
+      "deb"
+    ],
+    "category": "Utility"
+  }
+}
