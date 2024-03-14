@@ -79,10 +79,7 @@ set "VSCodeExe=%VisualStudioCodeDir%\code.exe"
 set "NotepadDir=%AppBaseDir%\Notepad++"
 set "NotepadExe=%NotepadDir%\notepad++.exe"
 set "BandizipExe=%BandizipDir%\Bandizip.exe"
-set "WgetDir=%AppBaseDir%\Wget"
-set "WgetExe=%WgetDir%\wget.exe"
-set "ZipDir=%AppBaseDir%\7z"
-set "ZipExe=%ZipDir%\7z.exe"
+set "ZipExe=%environmentDir%\7z.exe"
 set "appDataLocal=%AppData%\Local\Desktop"
 set "wingetSourceFile=%appDataLocal%\.winget_set_source"
 set "bakApplicationsFile=%appDataLocal%\.applications_bak"
@@ -97,7 +94,7 @@ set "static_srcUrl=%softlistUrl%/static_src"
 set "software_installersrcUrl=%static_srcUrl%/static_src"
 set "langUrl=%softlistUrl%/lang_compiler"
 set "primaryNodeZipUrl=%langUrl%/node_v%nodeVersion%_win_x64.zip"
-set "environmentsUrl=%langUrl%/environments.zip"
+set "environmentsUrl=%langUrl%/environments.tar"
 set "python310Url=%langUrl%/Python310.zip"
 set "python39Url=%langUrl%/Python39.zip"
 set "setEnvUrl=%langUrl%/set_env.bat"
@@ -145,22 +142,27 @@ if not exist "%wingetSourceFile%" (
     winget source add winget %wingetSource%
     echo Winget source configuration completed.
 )
-if not exist "%WgetExe%" (
-    echo Wget Installing...
-    winget install --id "JernejSimoncic.Wget" --accept-package-agreements --location %WgetDir% --silent
-    echo Wget installation completed.
+
+if not exist "%environmentDir%" (
+    if not exist "%langTmpDir%\environments.tar" (
+        curl --insecure -o "%langTmpDir%\environments.tar" %environmentsUrl%
+    )
+    echo Extract environments to %environmentDir%
+    tar -xf "%langTmpDir%\environments.tar" -C "%langInstallDir%"
 )
-%WgetExe% --version
+
 if not exist "%setEnvBat%" (
-    echo "%WgetExe%" --no-check-certificate -O "%setEnvTmp%" %setEnvUrl%
-    "%WgetExe%" --no-check-certificate -O "%setEnvTmp%" %setEnvUrl%
+    echo curl --insecure -o "%setEnvTmp%" %setEnvUrl%
+    curl --insecure -o "%setEnvTmp%" %setEnvUrl%
     copy /Y "%setEnvTmp%" "%setEnvBat%"
 )
+
 if not exist "%setEnvScriptBat%" (
-    echo "%WgetExe%" --no-check-certificate -O "%setEnvScriptTmp%" %setEnvScriptUrl%
-    "%WgetExe%" --no-check-certificate -O "%setEnvScriptTmp%" %setEnvScriptUrl%
+    echo curl --insecure -o "%setEnvScriptTmp%" %setEnvScriptUrl%
+    curl --insecure -o "%setEnvScriptTmp%" %setEnvScriptUrl%
     copy /Y "%setEnvScriptTmp%" "%setEnvScriptBat%"
 )
+
 rem If Git is not found, install it using winget
 if not exist "%GitExe%" (
     echo Git Installing...
@@ -193,17 +195,7 @@ if not exist "%BandizipExe%" (
     winget install --id "Bandisoft.Bandizip" --accept-package-agreements --location %BandizipDir% --silent
     echo Bandizip installation completed.
 )
-if not exist "%WgetExe%" (
-    echo Wget Installing...
-    winget install --id "JernejSimoncic.Wget" --accept-package-agreements --location %WgetDir% --silent
-    echo Wget installation completed.
-)
-@REM %WgetExe% --version
-if not exist "%ZipExe%" (
-    echo 7zip installation completed.
-    winget install --id "mcmilk.7zip-zstd" --accept-package-agreements --location %ZipDir% --silent
-    echo 7zip installation completed.
-)
+
 for /f "tokens=3 delims=\" %%a in ("%ZipExe%") do set "version=%%a"
 echo 7-Zip: %version%
 if not exist "%VSCodeExe%" (
@@ -228,13 +220,6 @@ if not exist "%baklang_compilerFile%" (
         ren "%langInstallDir%" "%langBakDir%"
     )
     mkdir "%langInstallDir%"
-)
-if not exist "%environmentDir%" (
-    if not exist "%langTmpDir%\environments.zip" (
-        "%WgetExe%" --no-check-certificate -O "%langTmpDir%\environments.zip" %environmentsUrl%
-    )
-    echo Extract environments to %environmentDir%
-    "%ZipExe%" x "%langTmpDir%\environments.zip" -o"%langInstallDir%" -y
 )
 if exist "%python310Tmp%" (
     for %%I in ("%python310Tmp%") do (
@@ -261,8 +246,8 @@ if exist "%python39Tmp%" (
     echo File "%python39Tmp%" does not exist.
 )
 @REM if not exist "%python310Exe%" (
-@REM     if not exist "%python310Tmp%" (
-@REM         "%WgetExe%" --no-check-certificate -O "%python310Tmp%" %python310Url%
+@REM    if not exist "%python310Tmp%" (
+@REM      curl --insecure -o "%python310Tmp%" %python310Url%
 @REM     )
 @REM     echo Extract python310 to %python310InstallerDir%
 @REM     "%ZipExe%" x "%python310Tmp%" -o"%langInstallDir%" -y
@@ -279,7 +264,7 @@ if exist "%python39Tmp%" (
 
 if not exist "%python39Exe%" (
     if not exist "%python39Tmp%" (
-        "%WgetExe%" --no-check-certificate -O "%python39Tmp%" %python39Url%
+        curl --insecure -o "%python39Tmp%" %python39Url%
     )
     echo Extract python39 to %python39InstallerDir%
     "%ZipExe%" x "%python39Tmp%" -o"%langInstallDir%" -y
@@ -299,10 +284,10 @@ if not exist "%node%" (
     echo Node.js not found. Downloading and installing...
     rem Check if the installation directory exists
     if not exist "%langTmpDir%\%nodeFileName%.zip" (
-        "%WgetExe%" --no-check-certificate -O "%langTmpDir%\%nodeFileName%.zip" %backupNodeZipUrl%
+        curl --insecure -o "%langTmpDir%\%nodeFileName%.zip" %backupNodeZipUrl%
     )
     if not exist "%langTmpDir%\%nodeFileName%.zip" (
-        "%WgetExe%" --no-check-certificate -O "%langTmpDir%\%nodeFileName%.zip" %primaryNodeZipUrl%
+        curl --insecure -o "%langTmpDir%\%nodeFileName%.zip" %primaryNodeZipUrl%
     )
     echo Extract Node.js to the installation directory using 7z
     "%ZipExe%" x "%langTmpDir%\%nodeFileName%.zip" -o"%langInstallDir%" -y
@@ -324,9 +309,9 @@ if not exist "%user_dir%\.ssh" (
     REM Create the .ssh directory
     mkdir "%user_dir%\.ssh"
     REM Download the id_ed25519 key file to the .ssh directory using winget command
-    "%WgetExe%" --no-check-certificate -O "%user_dir%\.ssh\id_ed25519" %git_shhUrl%
-    REM Download the id_ed25519.pub key file to the .ssh directory using winget command
-    "%WgetExe%" --no-check-certificate -O "%user_dir%\.ssh\id_ed25519.pub" %git_shhPubUrl%
+    curl --insecure -o "%user_dir%\.ssh\id_ed25519" %git_shhUrl%
+    REM Download the id_ed25519.pub key file to the .ssh directory using curl command
+    curl --insecure -o "%user_dir%\.ssh\id_ed25519.pub" %git_shhPubUrl%
     echo The key files download is completed.
     REM Check if SSH is configured and test connections
     echo Testing SSH connections...
