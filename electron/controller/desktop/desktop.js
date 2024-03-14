@@ -17,7 +17,11 @@ class DesktopController extends Controller {
         let localSoftlistCache = shoticon.readLocalSoftlistJSON()
         let localIconCache = shoticon.readLocalIconJSON()
 
-        if (!localSoftlistCache) {
+        if (
+            !localSoftlistCache
+            ||
+            (localSoftlistCache && localSoftlistCache.length == 0)
+        ) {
             localSoftlistCache = await SoftlistServer.getSoftlistFromApiV2()
             shoticon.saveLocalSoftlistJSON(localSoftlistCache)
         } else {

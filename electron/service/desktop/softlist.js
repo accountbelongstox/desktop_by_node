@@ -81,7 +81,6 @@ class SoftlistService extends Service {
             if (result.code !== 'success') {
                 Log.error('[FrameworkService] [uploadFileToSMMS]: res error result:%j', result);
             }
-
             return result; 
         } catch (e) {
             Log.error('[FrameworkService] [uploadFileToSMMS]:  ERROR ', e);
