@@ -6,8 +6,8 @@ const { promisify } = require('util');
 const writeFileAsync = promisify(fs.writeFile);
 const dependsJson = {
     "git_repository": {
-        "node_provider": "https://gitee.com/accountbelongstox/node_provider.git",
-        "node_spider": "https://gitee.com/accountbelongstox/node_spider.git"
+        "node_provider": "https://github.com/accountbelongstox/node_provider.git",
+        "node_spider": "https://github.com/accountbelongstox/node_spider.git"
     },
     "include_git_dir": [
         {
@@ -22,7 +22,7 @@ class Env { mainEnvFile = null; annotationSymbol = "#"; constructor(rootDir = nu
 const env = new Env()
 class AutoInstaller {
     projects = ['.'];
-    projectsFullDirs = [];
+    projectsFullDirs = ['.'];
     public_skip_dirs = ['node_modules'];
     dependesPaths = [];
     currentDirectory = path.dirname(__filename);
@@ -74,6 +74,9 @@ class AutoInstaller {
         }
     }
     isGitDirectoryEmpty(directoryPath) {
+        if (!fs.existsSync(directoryPath)) {
+            return true;
+        }
         const files = fs.readdirSync(directoryPath);
         return files.length === 0 || (files.length === 1 && files[0] === '.gitkeep');
     }
@@ -162,8 +165,10 @@ class AutoInstaller {
     runInstallInDirectories() {
         const projects = this.projectsFullDirs;
         for (const directory of projects) {
-            if (!this.isNodeModulesNotEmpty(directory) && this.isPackageJson(directory)) {
+		    if (!this.isNodeModulesNotEmpty(directory) && this.isPackageJson(directory)) {
                 const cmd = `${this.yarn} install`
+				console.log(`directory-cmd ${cmd}`,!this.isNodeModulesNotEmpty(directory),this.isPackageJson(directory))
+        
                 this.execCommand(cmd, directory);
             }
         }
@@ -194,6 +199,7 @@ class AutoInstaller {
         if (cwd) {
             process.chdir(cwd)
         }
+		console.log(`start-cmd ${cmd}`)
         execSync(cmd, { shell: true, stdio: 'inherit' });
         if (cwd) {
             process.chdir(this.currentDirectory)
