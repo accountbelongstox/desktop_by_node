@@ -11,7 +11,7 @@ class Main{
             case 'java':
                 command = 'java -version';
                 break;
-            case 'node':
+            case 'node': 
                 command = 'node -v';
                 break;
             case 'rust':
@@ -34,7 +34,7 @@ class Main{
             if (error) {
                 callback(null);
                 return;
-            }
+            } 
 
             const output = stdout || stderr;
             callback(output.trim());
