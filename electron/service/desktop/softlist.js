@@ -4,6 +4,8 @@ const Log = require('ee-core/log');
 const Ps = require('ee-core/ps');
 const HttpClient = require('ee-core/httpclient');
 const {gdir} = require('../../../dd_electron/node_provider/globalvars.js');
+const {strtool} = require('../../../dd_electron/node_provider/utils.js');
+
 
 class SoftlistService extends Service {
 
@@ -25,10 +27,10 @@ class SoftlistService extends Service {
             });
             const result = response.data;
             if (Ps.isDev()) {
-                Log.info('[FrameworkService] [uploadFileToSMMS]: info result:%j', result);
+                Log.info('[getSoftlistFromApi]: info result:%j', strtool.truncate(result));
             }
             if (result.code !== 'success') {
-                Log.error('[FrameworkService] [uploadFileToSMMS]: res error result:%j', result);
+                Log.error('[getSoftlistFromApi]: res error result:%j', strtool.truncate(result));
             }
 
             let resultIcons = {}
@@ -39,10 +41,10 @@ class SoftlistService extends Service {
             });
             resultIcons = responseIcons.data;
             if (Ps.isDev()) {
-                Log.info('[FrameworkService] [uploadFileToSMMS]: info result:%j', responseIcons);
+                Log.info('[getSoftlistFromApi]: info result:%j', strtool.truncate(result));
             }
             if (result.code !== 'success') {
-                Log.error('[FrameworkService] [uploadFileToSMMS]: res error result:%j', responseIcons);
+                Log.error('[getSoftlistFromApi]: res error result:%j', strtool.truncate(result));
             }
             for (const key in result) {
                 const softobjs = result[key]
@@ -58,7 +60,7 @@ class SoftlistService extends Service {
             }
             return result;
         } catch (e) {
-            Log.error('[FrameworkService] [uploadFileToSMMS]:  ERROR ', e);
+            Log.error('[uploadFileToSMMS]:  ERROR ', e);
         }
         return res;
     }
@@ -76,14 +78,14 @@ class SoftlistService extends Service {
             });
             let result = response.data;
             if (Ps.isDev()) {
-                Log.info('[FrameworkService] [uploadFileToSMMS]: info result:%j', result);
+                Log.info('[getSoftlistFromApiV2]: info result:%j', strtool.truncate(result));
             }
             if (result.code !== 'success') {
-                Log.error('[FrameworkService] [uploadFileToSMMS]: res error result:%j', result);
+                Log.error('[getSoftlistFromApiV2]: res error result:%j', strtool.truncate(result));
             }
             return result; 
         } catch (e) {
-            Log.error('[FrameworkService] [uploadFileToSMMS]:  ERROR ', e);
+            Log.error('[getSoftlistFromApiV2]:  ERROR ', e);
         }
         return res;
     }
@@ -99,10 +101,10 @@ class SoftlistService extends Service {
         });
         let result = response.data;
         if (Ps.isDev()) {
-            Log.info('[FrameworkService] [uploadFileToSMMS]: info result:%j', response);
+            Log.info('[getIconsFromApiV2]: info result:%j', strtool.truncate(result));
         }
         if (result.code !== 'success') {
-            Log.error('[FrameworkService] [uploadFileToSMMS]: res error result:%j', response);
+            Log.error('[getIconsFromApiV2]: res error result:%j', strtool.truncate(result));
         }
         return result;;
     }

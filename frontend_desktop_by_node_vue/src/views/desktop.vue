@@ -267,6 +267,7 @@ const setHovered = (index: number) => {
     isHovered.value = isHovered.value.map((hovered, i) => i === index);
 };
 socket.sendData(`getDesktopList`, (result: any) => {
+    console.log('getDesktopList:', result);
     softList.value = result
 })
 const hideMenu = () => {
