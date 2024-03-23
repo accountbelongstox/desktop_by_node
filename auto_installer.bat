@@ -169,9 +169,9 @@ if not exist "%GitExe%" (
     winget install --id "Git.Git" --accept-package-agreements --location %GitDir% --silent
     echo Git installation completed.
     %GitExe% config --global http.sslVerify false
-    %GitExe% config hooks.filesizehardlimit 20000000
-    %GitExe% config hooks.filesizesoftlimit 20000000
-    %GitExe% config core.ignorecase false
+    %GitExe% config --global hooks.filesizehardlimit 20000000
+    %GitExe% config --global hooks.filesizesoftlimit 20000000
+    %GitExe% config --global core.ignorecase false
 )
 %GitExe% --version
 rem Check if user email is configured
