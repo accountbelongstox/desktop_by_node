@@ -27,7 +27,7 @@ class Message {
         });
     }
 
-    showMessage(title, text, icon = 'success', timer = 1500) {
+    showMessage(title, text, icon = 'success', timer = 3000) {
         this.setSetupSwal();
 
         this.Swal.fire({
@@ -39,7 +39,7 @@ class Message {
         });
     }
 
-    showToast(text, icon = 'success', timer = 1500, position = "top-end") {
+    showToast(text, icon = 'success', timer = 3000, position = "top-end") {
         this.setSetupSwal();
 
         this.Toast(position).fire({
@@ -49,15 +49,15 @@ class Message {
         });
     }
 
-    showToastTopRight(text, icon = 'success', timer = 1500) {
+    showToastTopRight(text, icon = 'success', timer = 3000) {
         this.showToast(text, icon, timer, "top-end");
     }
 
-    showToastMiddleRight(text, icon = 'success', timer = 1500) {
+    showToastMiddleRight(text, icon = 'success', timer = 3000) {
         this.showToast(text, icon, timer, "center-end");
     }
 
-    showToastBottomRight(text, icon = 'success', timer = 1500) {
+    showToastBottomRight(text, icon = 'success', timer = 3000) {
         this.showToast(text, icon, timer, "bottom-end");
     }
 }

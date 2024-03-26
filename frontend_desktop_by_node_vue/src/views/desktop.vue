@@ -214,15 +214,14 @@ import socket from '@/api/vue3/socket';
 const softList = ref([]);
 
 mittEvent.on('installer', (data) => {
-    console.log(`installer:`, data);
     if (data && data.basename) {
         if (data.installingProgress) {
             const installingProgress = parseFloat(data.installingProgress)
             if (!isNaN(installingProgress)) {
+                const message = data.message ? data.message : '';
                 if (installingProgress < 0) {
-                    const installMessage = data.installMessage ? data.installMessage : '';
-                    if (installMessage) {
-                        swalMsg.showToastBottomRight(installMessage, "error");
+                    if (message) {
+                        swalMsg.showToastBottomRight(message, "error");
                     }
                 }
                 if (installingProgress >= 100 || installingProgress < 0) {
@@ -230,9 +229,9 @@ mittEvent.on('installer', (data) => {
                     deleteSoftwareValueByAid(data.aid, 'installingProgress');
                     updateSoftwareValueByAid(data.aid, 'isExist', data.isExist);
                     if (data.isExist) {
-                        swalMsg.showToastTopRight(`${data.basename} 安装完成`);
+                        swalMsg.showToastTopRight(`${data.basename} 安装完成!`);
                     } else {
-                        swalMsg.showToastBottomRight(`${data.basename} 安装失败`, "error");
+                        swalMsg.showToastBottomRight(`${data.basename} 安装失败${message}.`, "error");
                     }
                 } else {
                     updateSoftwareValueByAid(data.aid, 'installingProgress', installingProgress);
