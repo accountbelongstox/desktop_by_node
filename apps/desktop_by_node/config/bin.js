@@ -9,7 +9,7 @@ module.exports = {
      */
     dev: {
       frontend: {
-        node:`16`,//增加node版本配置
+        node:`18`,//增加node版本配置
         directory: './frontend',
         cmd: 'npm',
         args: ['run', 'dev'],
