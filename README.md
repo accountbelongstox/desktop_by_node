@@ -1,11 +1,11 @@
 # 集成框架
 <div align=center>
-<h3>🎉🎉🎉 基于Egg-electron/基于Electron 🎉🎉🎉</h3>
+<h3>🎉🎉🎉 基于Egg-electron/ 的工作平台 🎉🎉🎉</h3>
 </div>
 <br>
 
 ## 下一个版本使用Rust.Tauri
-
+## 项目依赖
 NPM-depandecy:
     "lodash": "^4.17.21",
     "puppeteer": "^21.3.8",

@@ -1,9 +1,10 @@
 'use strict';
 const path = require('path');
+
 /**
  * 默认配置
  */
-module.exports = (appInfo) => {
+module.exports =  (appInfo) => {
   const config = {};
 
   /**
