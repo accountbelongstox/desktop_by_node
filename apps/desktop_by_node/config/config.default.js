@@ -3,7 +3,7 @@ const path = require('path');
 /**
  * 默认配置
  */
-module.exports = (appInfo) => {
+module.exports = () => {
   const config = {};
 
   /**
@@ -22,8 +22,8 @@ module.exports = (appInfo) => {
    */
   config.windowsOption = {
     title: '工作开发平台',
-    width: 1800,
-    height: 1200,
+    width: null,
+    height: null,
     minWidth: 980,
     minHeight: 650,
     webPreferences: {
@@ -34,7 +34,8 @@ module.exports = (appInfo) => {
     },
     frame: true,
     show: false,
-    icon: path.join(appInfo.home, 'public', 'images', 'logo-32.png'),
+    resizable:true,
+    // icon: path.join(appInfo.home, 'public', 'images', 'logo-32.png'),
   };
 
   /**
@@ -50,7 +51,7 @@ module.exports = (appInfo) => {
     appLogName: 'ee.log',
     coreLogName: 'ee-core.log',
     errorLogName: 'ee-error.log',
-    dir: path.join(appInfo.execDir, 'logs'),
+    // dir: path.join(appInfo.execDir, 'logs'),
   }
 
   /**

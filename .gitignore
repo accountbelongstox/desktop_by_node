@@ -13,7 +13,7 @@ library/
 .DS_Store
 Thumbs.db
 node_spider/
-node_provider/
+core_node/
 
 .vscode/
 .idea/

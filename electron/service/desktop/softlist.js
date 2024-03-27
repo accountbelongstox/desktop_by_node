@@ -3,8 +3,8 @@ const { Service } = require('ee-core');
 const Log = require('ee-core/log');
 const Ps = require('ee-core/ps');
 const HttpClient = require('ee-core/httpclient');
-const {gdir} = require('../../../dd_electron/node_provider/globalvars.js');
-const {strtool} = require('../../../dd_electron/node_provider/utils.js');
+const {gdir} = require('../../../core_node/globalvars.js');
+const {strtool} = require('../../../core_node/utils.js');
 
 
 class SoftlistService extends Service {

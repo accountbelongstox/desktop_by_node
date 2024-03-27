@@ -11,11 +11,11 @@ module.exports = async () => {
   Addon.get('security').create();
   Addon.get('awaken').create();
   Addon.get('autoUpdater').create();
-  
-  const startByMain = require('../../dd_electron/main/startByMain');
-  const dd_Electron = new startByMain();
-  dd_Electron.start();
-  
+
+  const MountEgg = require('../../core_node/electron/main.js');
+  const coreNodeEgg = new MountEgg();
+  coreNodeEgg.start();
+
 }
 
 

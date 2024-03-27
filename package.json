@@ -13,7 +13,7 @@
     "encrypt": "ee-bin encrypt",
     "clean": "ee-bin clean",
     "icon": "ee-bin icon",
-    "reload": "nodemon --config ./dd_electron/config/nodemon.json",
+    "reload": "nodemon --config ./electron/config/nodemon.json",
     "rebuild": "electron-rebuild",
     "re-sqlite": "electron-rebuild -f -w better-sqlite3",
     "build-w": "electron-builder --config=./electron/config/builder.json -w=nsis --x64",
