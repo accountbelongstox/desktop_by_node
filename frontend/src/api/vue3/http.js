@@ -32,7 +32,7 @@ class DataSender {
         seen.delete(obj);
         return result;
     }
-
+//the method in queue is not stand for request method,it's a users' action to server
     async addToQueue(method, url, data = {}, callback){
         this.queue.push({
             method,

@@ -623,8 +623,8 @@ const handleContextMenu = (event, ele) => {
 
 };
 const getSoftTileHeight = (software: any) => {
-    let height = software.icon_width / 2
-    if(height<20)height = 20
+    let height = software.icon_width / 3 //it always less than 20 so can'tchange height after if
+    if(height<20)height = 50 //origin data is 20,it can change icon's height quitely
     const margin = 0 //software.icon_width / 6 
     return {height,margin};
 };
