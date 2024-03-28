@@ -103,7 +103,7 @@
         </div>
         <div class="flex flex-wrap">
             <div v-for="(group, index) in softList" :key="index"
-                :class="['flex-auto', 'bg-gray-200', 'm-2', 'p-3', 'box', 'bl-5', 'border-l-solid', group.border, 'rounded', 'pull-up', 'icon-list-box']"
+                :class="['flex-auto', 'bg-gray-200', 'm-1', 'box', 'bl-5', 'border-l-solid', group.border, 'rounded', 'pull-up', 'icon-list-box']"
                 :id="group.gid" :style="groupStyle(group)">
                 <div class="box-body" style="padding: 0;">
                     <div class="flex-grow-1">
@@ -118,7 +118,7 @@
                         <div class="d-flex" :id="'icon_' + group.gid"
                             style="flex-wrap: wrap; display: flex; justify-content: flex-start;">
                             <div v-for="(software, sIndex) in group.softwareList" :key="sIndex"
-                                class="aid_container software-hover"
+                                class="aid_container software-hover flex justify-center"
                                 @contextmenu="($event) => handleContextMenu($event, software)"
                                 :style="getContainerStyle(software)">
                                 <a href="javascript:;" @dblclick="runTheSoftware(software)" :id="software.aid"
@@ -139,7 +139,7 @@
                                             </svg>
                                         </div>
                                     </div>
-                                    <div class="titl_egroup">
+                                    <div class="title_egroup" :style="getSoftTileStyle(software)">
                                         <div class="install-button"
                                             v-if="!software.isExist && !software.installingProgress">
                                             <a href="javascript:;" @click="installTheSoftware(software)"
@@ -540,10 +540,10 @@ socket.sendData(`getDesktopList`, (result: any) => {
         console.log('langList:', lResult);
     })
 })
+const showContextMenu = ref(false);
 const hideMenu = () => {
     showContextMenu.value = false;
 };
-const showContextMenu = ref(false);
 const menuX = ref(0);
 const menuY = ref(0);
 const handleMenuItemClick = (option) => {
@@ -552,8 +552,13 @@ const handleMenuItemClick = (option) => {
 };
 const router = useRouter();
 const hasRoute = router.hasRoute(`desktop`);
+console.log(`hasRoute`,hasRoute)
+store.setDesktopRoute(hasRoute)
 let previousBackgroundImage = '';
 if (hasRoute) {
+    if (!store.sidebar) {
+        store.toggleSidebar();
+    }
     previousBackgroundImage = document.body.style.backgroundImage;
     document.body.style.backgroundImage = "url('/assets/images/Windows11.jpg')";
     document.body.style.backgroundSize = "cover";
@@ -572,6 +577,7 @@ const clearDesktopSet = () => {
     document.removeEventListener('scroll', hideMenu);
     document.removeEventListener('click', hideMenu);
     document.removeEventListener('dblclick', hideMenu);
+    store.setDesktopRoute(false)
 }
 onMounted(() => {
     router.beforeEach((to, from, next) => {
@@ -616,13 +622,38 @@ const handleContextMenu = (event, ele) => {
     // }
 
 };
+const getSoftTileHeight = (software: any) => {
+    let height = software.icon_width / 2
+    if(height<20)height = 20
+    const margin = 0 //software.icon_width / 6 
+    return {height,margin};
+};
+const getSoftTileStyle = (software: any) => {
+    const {height,margin} = getSoftTileHeight(software)
+    let imgStyle = ``//`height: ${height}px;margin:${margin} 0;`;
+    return imgStyle;
+};
+const getContainerWidth = (software: any) => {
+    let imgMargin = software.icon_width/10;
+    let {height,margin} = getSoftTileHeight(software)
+    height = software.icon_width + height + margin *2;
+    let width = software.icon_width + imgMargin * 2
+    return {width,height};
+};
+const getContainerStyle = (software: any) => {
+    const {width,height} = getContainerWidth(software)
+    let style = `width:${width}px;height:${height}px;`;
+    return style;
+};
+
 const getListIconWidth = (group: any): number => {
     const gListLength = group.softwareList.length
     let n = gListLength / 3
     n = Math.ceil(n);
-    let imgMargin = 10
+    let imgMargin = group.icon_width / 10
     const icon_width = group.icon_width
-    let w = (n * (imgMargin * 2 + icon_width)) + 35
+    let {width,height} = getContainerWidth(group.softwareList[0])
+    let w = (n * width) 
     return w
 }
 const groupStyle = (group: any) => {
@@ -630,17 +661,9 @@ const groupStyle = (group: any) => {
     let css = `width:${w}px;`;
     let style_width = css;
     let app_region = `-webkit-app-region: no-drag;-webkit-user-select: none;`;
-    let margin = `margin-right: 10px;`;
+    let margin = `margin-right: 5px;`;
     return `${app_region}${style_width}${margin};position: relative;background:none;`;
 }
-const getContainerStyle = (item: any) => {
-    let imgMargin = 10;
-    let style = `position:relative;margin: ${imgMargin / 2}px;`;
-    if (item.icon_width) {
-        style += `width:${item.icon_width + imgMargin}px;`;
-    }
-    return style;
-};
 const getIconStyle = (software: any) => {
     let imag_gray = '';
     if (!software.isExist) {
@@ -664,9 +687,7 @@ const getTitleClass = (item: any) => {
     return titleClass;
 };
 
-if (!store.sidebar) {
-    store.toggleSidebar();
-}
+
 function getSoftwareByGroupAndBasename(groupname, basename) {
     const group = softList.value.find(group => group.groupname === groupname);
     return group ? group.softwareList.find(software => software.basename === basename) : null;
@@ -724,6 +745,7 @@ function getLevelPath(apath: string, n: number, x: any) {
     }
 }
 </script>
+
 <style>
 .border-l-solid {
     border-left: 2px solid;
@@ -813,11 +835,10 @@ function getLevelPath(apath: string, n: number, x: any) {
     justify-content: space-between
 }
 
-.titl_egroup {
+.title_egroup {
     position: relative;
     width: 100%;
-    height: 30px;
-    margin: 5px 0;
+    /* height: 30px; */
 }
 
 .install-button {

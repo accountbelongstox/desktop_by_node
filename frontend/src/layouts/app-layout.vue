@@ -60,7 +60,7 @@
                 <!--  BEGIN TOP NAVBAR  -->
                 <Header />
                 <!--  END TOP NAVBAR  -->
-                <div class="p-6 animation">
+                <div :class="getClassNames()">
                     <router-view></router-view>
                     <!-- BEGIN FOOTER -->
                     <Footer />
@@ -82,6 +82,14 @@
     import { useAppStore } from '@/stores/index';
     const store = useAppStore();
     const showTopButton = ref(false);
+    
+    const getClassNames = () => {
+        return {
+            "p-6": !store.desktopRoute,
+            animation: true
+        };
+    };
+
     onMounted(() => {
         window.onscroll = () => {
             if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
@@ -90,7 +98,6 @@
                 showTopButton.value = false;
             }
         };
-
         const eleanimation: any = document.querySelector('.animation');
         eleanimation.addEventListener('animationend', function () {
             appSetting.changeAnimation('remove');

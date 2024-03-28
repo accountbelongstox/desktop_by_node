@@ -4,7 +4,7 @@ const Log = require('ee-core/log');
 const Ps = require('ee-core/ps');
 const HttpClient = require('ee-core/httpclient');
 const {gdir} = require('../../../core_node/globalvars.js');
-const {strtool} = require('../../../core_node/utils.js');
+const {strtool, file} = require('../../../core_node/utils.js');
 
 
 class SoftlistService extends Service {
@@ -68,9 +68,11 @@ class SoftlistService extends Service {
     async getSoftlistFromApiV2() {
         const res = [];
         const staticApiUrl = await gdir.getLocalStaticApiTestUrl()
+        const ismanagerFile = gdir.getLocalFile('manager_rule.ini')
+        const softlistGroupConfigFile = file.isFile(ismanagerFile) ? `soft_group_v2.json`: `soft_group_dev_v2.json` 
         try {
             const hc = new HttpClient();
-            const softlistApiUrl = staticApiUrl + `softlist/static_src/software_config/soft_group_v2.json`
+            const softlistApiUrl = staticApiUrl + `softlist/static_src/software_config/${softlistGroupConfigFile}`
             const response = await hc.request(softlistApiUrl, {
                 method: 'GET',
                 dataType: 'json',

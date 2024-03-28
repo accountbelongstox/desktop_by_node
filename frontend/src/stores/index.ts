@@ -5,6 +5,7 @@ import appSetting from '@/app-setting';
 export const useAppStore = defineStore('app', {
     state: () => ({
         isDarkMode: false,
+        desktopRoute:false,
         mainLayout: 'app',
         theme: 'light',
         menu: 'vertical',
@@ -103,6 +104,9 @@ export const useAppStore = defineStore('app', {
         },
         toggleSidebar(state: boolean = false) {
             this.sidebar = !this.sidebar;
+        },
+        setDesktopRoute(state: boolean = false) {
+            this.desktopRoute = !this.desktopRoute;
         },
         toggleMainLoader(state: boolean = false) {
             this.isShowMainLoader = true;
