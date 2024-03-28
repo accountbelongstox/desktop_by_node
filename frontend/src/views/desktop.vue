@@ -181,19 +181,33 @@
                 </div>
             </div>
         </div>
-        <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-6 mt-8">
+        <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-6 mt-8 ">
             <div class="panel h-full bg-transparent icon-list-box">
                 <div class="mb-5">
                     <span
                         class="bg-[#1b2e4b] text-white text-xs rounded-full px-4 py-1.5 before:bg-white before:w-1.5 before:h-1.5 before:rounded-full ltr:before:mr-2 rtl:before:ml-2 before:inline-block">系统默认编程语言
                         （点击直接修改版本）。</span>
                 </div>
-                <div class="font-semibold text-center pb-0">
+                <div class="
+          dark:bg-[#1b2e4b]
+          rounded-xl
+          shadow-[0_0_4px_2px_rgb(31_45_61_/_10%)]
+          p-3
+          flex
+          items-center
+          justify-between
+          text-gray-500
+          font-semibold
+          min-w-[625px]
+          hover:text-primary
+          transition-all
+          duration-300
+          hover:scale-[1.01]">
                     <div class="flex items-center justify-center gap-3 pb-2">
                         <div class="dropdown" v-for="(lang, index) in basicEnvList.langs" :key="index">
                             <Popper :placement="store.rtlClass === 'rtl' ? 'bottom-start' : 'bottom-end'"
                                 offsetDistance="0" class="align-middle">
-                                <button type="button" class="btn btn-lg dropdown-toggle pl-2 pr-2"
+                                <button type="button" class="btn btn-sm dropdown-toggle pl-2 pr-2 bg-white text-black rounded-lg"
                                     :style="{ borderColor: lang.borderColor || '#ffffff' }">
                                     <img class="w-10 h-10 dark:ring-dark rounded-lg overflow-hidden object-cover"
                                         :src="'/assets/icons/' + lang.icon || 'default.png'"
@@ -218,20 +232,30 @@
                                 </template>
                             </Popper>
                         </div>
-
-
-
-
                     </div>
                 </div>
 
-
-                <div class="mb-5">
-                    <span
-                        class="bg-[#1b2e4b] text-white text-xs rounded-full px-4 py-1.5 before:bg-white before:w-1.5 before:h-1.5 before:rounded-full ltr:before:mr-2 rtl:before:ml-2 before:inline-block">基础开发环境。</span>
+                <div class="w-full h-1 bg-[#ebedf2] dark:bg-dark/40 rounded-full flex">
+                    <div class="bg-success h-1 rounded-full rounded-bl-full w-5/12 text-center text-white text-xs">
+                        <span>PHP</span><span>90%</span>
+                    </div>
                 </div>
                 <TabGroup as="div" class="mb-5">
-                    <TabList class="flex flex-wrap justify-center mt-3 mb-5 space-x-3 rtl:space-x-reverse">
+                    <TabList class="
+          dark:bg-[#1b2e4b]
+          rounded-xl
+          shadow-[0_0_4px_2px_rgb(31_45_61_/_10%)]
+          p-3
+          flex
+          items-center
+          justify-between
+          text-gray-500
+          font-semibold
+          min-w-[625px]
+          hover:text-primary
+          transition-all
+          duration-300
+          hover:scale-[1.01]">
                         <Tab as="template" v-slot="{ selected }">
                             <a href="javascript:;"
                                 class="w-12 h-12 flex items-center justify-center rounded-full bg-[#f1f2f3] dark:bg-[#191e3a] hover:!bg-info hover:text-white hover:shadow-[0_5px_15px_0_rgba(0,0,0,0.30)] transition-all duration-300 !outline-none"
@@ -440,20 +464,6 @@
                     </highlight>
                 </template>
             </div>
-            <div class="h-full p-0 border-0 overflow-hidden">
-                <div class="p-5">
-                    <div class="mb-5">
-                        <span
-                            class="bg-[#1b2e4b] text-white text-xs rounded-full px-4 py-1.5 before:bg-white before:w-1.5 before:h-1.5 before:rounded-full ltr:before:mr-2 rtl:before:ml-2 before:inline-block">开发环境指南,:\apps。</span>
-                        <span
-                            class="bg-[#1b2e4b] text-white text-xs rounded-full px-4 py-1.5 before:bg-white before:w-1.5 before:h-1.5 before:rounded-full ltr:before:mr-2 rtl:before:ml-2 before:inline-block">软件使用指南,软件统一安装D:\apps。</span>
-                    </div>
-                    <div class="text-center px-2 flex justify-around">
-                        <button type="button" class="btn btn-secondary ltr:mr-2 rtl:ml-2">View Details</button>
-                        <button type="button" class="btn btn-success">Pay Now $29.51</button>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </template>
@@ -552,7 +562,7 @@ const handleMenuItemClick = (option) => {
 };
 const router = useRouter();
 const hasRoute = router.hasRoute(`desktop`);
-console.log(`hasRoute`,hasRoute)
+console.log(`hasRoute`, hasRoute)
 store.setDesktopRoute(hasRoute)
 let previousBackgroundImage = '';
 if (hasRoute) {
@@ -624,24 +634,24 @@ const handleContextMenu = (event, ele) => {
 };
 const getSoftTileHeight = (software: any) => {
     let height = software.icon_width / 3 //it always less than 20 so can'tchange height after if
-    if(height<20)height = 50 //origin data is 20,it can change icon's height quitely
+    if (height < 20) height = 50 //origin data is 20,it can change icon's height quitely
     const margin = 0 //software.icon_width / 6 
-    return {height,margin};
+    return { height, margin };
 };
 const getSoftTileStyle = (software: any) => {
-    const {height,margin} = getSoftTileHeight(software)
+    const { height, margin } = getSoftTileHeight(software)
     let imgStyle = ``//`height: ${height}px;margin:${margin} 0;`;
     return imgStyle;
 };
 const getContainerWidth = (software: any) => {
-    let imgMargin = software.icon_width/10;
-    let {height,margin} = getSoftTileHeight(software)
-    height = software.icon_width + height + margin *2;
+    let imgMargin = software.icon_width / 10;
+    let { height, margin } = getSoftTileHeight(software)
+    height = software.icon_width + height + margin * 2;
     let width = software.icon_width + imgMargin * 2
-    return {width,height};
+    return { width, height };
 };
 const getContainerStyle = (software: any) => {
-    const {width,height} = getContainerWidth(software)
+    const { width, height } = getContainerWidth(software)
     let style = `width:${width}px;height:${height}px;`;
     return style;
 };
@@ -652,8 +662,8 @@ const getListIconWidth = (group: any): number => {
     n = Math.ceil(n);
     let imgMargin = group.icon_width / 10
     const icon_width = group.icon_width
-    let {width,height} = getContainerWidth(group.softwareList[0])
-    let w = (n * width) 
+    let { width, height } = getContainerWidth(group.softwareList[0])
+    let w = (n * width)
     return w
 }
 const groupStyle = (group: any) => {
@@ -759,7 +769,7 @@ function getLevelPath(apath: string, n: number, x: any) {
     right: 0;
     bottom: 0;
     background-image: linear-gradient(to top, #5ee7df 0%, #b490ca 100%) !important;
-    opacity: 0.5;
+    opacity: 0.8;
     z-index: -1;
     border-radius: 10px;
 }
@@ -847,7 +857,6 @@ function getLevelPath(apath: string, n: number, x: any) {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
     padding: 5px 0;
 }
 
@@ -912,6 +921,8 @@ function getLevelPath(apath: string, n: number, x: any) {
 
 .mb-2-install {
     font-size: 12px !important;
+    margin-top: -5px !important;
+    ;
 }
 
 .customContextMenu {
