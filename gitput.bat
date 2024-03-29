@@ -11,7 +11,7 @@ set "day=%datetime:~6,2%"
 set "hour=%datetime:~8,2%"
 set "minute=%datetime:~10,2%"
 set "second=%datetime:~12,2%"
-set "timestamp=%year%-%month%-%day%-%hour%-%minute%-%second%"
+set "timestamp=%year%-%month%-%day%@%hour%-%minute%-%second%"
 set "core_node_dir=%~dp0core_node\"
 
 call :ColorText 0a "%timestamp%"
