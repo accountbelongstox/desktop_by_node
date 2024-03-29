@@ -16,13 +16,13 @@ set "core_node_dir=%~dp0core_node\"
 
 call :ColorText 0a "Submitgithub"
 echo.
-call :ColorText 0C "%timestamp%"
+call :ColorText 0C "startSubmit"
 echo.
-call :ColorText 0b "%timestamp%"
+call :ColorText 0b "startSubmit"
 echo.
-call :ColorText 19 "%timestamp%"
+call :ColorText 19 "startSubmit"
 echo.
-call :ColorText 2F "%timestamp%"
+call :ColorText 2F "startSubmit"
 echo.
 call :ColorText 4e "%timestamp%"
 echo.
