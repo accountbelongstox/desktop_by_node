@@ -37,6 +37,7 @@ echo.
 git add .
 git commit -m "%timestamp%"
 git push --set-upstream origin main
+echo.
 call :ColorText 2F "----------------------------------------------------------------" 
 echo.
 echo.
