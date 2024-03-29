@@ -4,7 +4,7 @@ for /F "tokens=1,2 delims=#" %%a in ('"prompt #$H#$E# & echo on & for %%b in (1)
   set "DEL=%%a"
 )
 
-:start
+
 
 call :ColorText 0a "green"
 echo.
@@ -23,8 +23,6 @@ echo.
 goto :eof
 
 :ColorText
-echo off
 <nul set /p ".=%DEL%" > "%~2"
 findstr /v /a:%1 /R "^$" "%~2" nul
-del "%~2" > nul 2>&1
-goto :eof
+
