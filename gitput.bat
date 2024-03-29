@@ -27,6 +27,7 @@ echo.
 call :ColorText 4e "%timestamp%"
 echo.
 
+echo.
 call :ColorText 0a "Entering--" 
 echo %cd%
 call :ColorText 0a "--------------------------------" 
