@@ -3,18 +3,6 @@ SETLOCAL EnableDelayedExpansion
 for /F "tokens=1,2 delims=#" %%a in ('"prompt #$H#$E# & echo on & for %%b in (1) do rem"') do (
   set "DEL=%%a"
 )
-call :ColorText 0a "a"
-echo.
-call :ColorText 0C "%timestamp%"
-echo.
-call :ColorText 0b "%timestamp%"
-echo.
-call :ColorText 19 "%timestamp%"
-echo.
-call :ColorText 2F "%timestamp%"
-echo.
-call :ColorText 4e "%timestamp%"
-echo.
 
 for /f "delims=" %%a in ('wmic OS Get localdatetime ^| find "."') do set datetime=%%a
 set "year=%datetime:~0,4%"
@@ -27,6 +15,18 @@ set "timestamp=%year%-%month%-%day% %hour%:%minute%:%second%"
 set "core_node_dir=%~dp0core_node\"
 
 
+call :ColorText 0a "%timestamp%"
+echo.
+call :ColorText 0C "%timestamp%"
+echo.
+call :ColorText 0b "%timestamp%"
+echo.
+call :ColorText 19 "%timestamp%"
+echo.
+call :ColorText 2F "%timestamp%"
+echo.
+call :ColorText 4e "%timestamp%"
+echo.
 
 call :ColorText 0a "Entering %cd%" 
 echo.
