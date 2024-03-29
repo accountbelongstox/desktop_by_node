@@ -27,7 +27,7 @@ echo.
 call :ColorText 4e "%timestamp%"
 echo.
 
-call :ColorText 0a "Entering %cd%" 
+call :ColorText 0a "Entering:%cd%" 
 echo.
 git remote -v
 call :ColorText 0a "Current working directory: %cd%"
