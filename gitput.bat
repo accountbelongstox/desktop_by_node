@@ -22,9 +22,9 @@ call :ColorText 0b "startSubmit"
 echo.
 call :ColorText 19 "startSubmit"
 echo.
-call :ColorText 2F "startSubmit"
+call :ColorText 2F "%timestamp%"
 echo.
-call :ColorText 4e "%timestamp%"
+call :ColorText 4e "startSubmit"
 echo.
 
 echo.
