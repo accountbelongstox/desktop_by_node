@@ -2883,6 +2883,11 @@ vue@^3.0.0, vue@^3.0.11, vue@^3.2.37:
     "@vue/server-renderer" "3.2.40"
     "@vue/shared" "3.2.40"
 
+vuetify@^3.5.13:
+  version "3.5.13"
+  resolved "https://mirrors.tencent.com/npm/vuetify/-/vuetify-3.5.13.tgz#24a45d19ce5dcf71b2653f0bcf3ea91edf1f406c"
+  integrity sha512-3ZyIoHgB2GR87ojIpqNwkkRXlUNTEKh83fjUuQ1hOKdTXzEuZXBgtfUt9kp4WOVnYILGdZKWTJ6gv8nXOa/tZA==
+
 which-boxed-primitive@^1.0.2:
   version "1.0.2"
   resolved "https://registry.npmjs.org/which-boxed-primitive/-/which-boxed-primitive-1.0.2.tgz"

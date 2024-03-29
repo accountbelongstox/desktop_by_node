@@ -4,7 +4,7 @@ import messages from '@intlify/vite-plugin-vue-i18n/messages';
 export default createI18n({
     legacy: false,
     allowComposition: true,
-    locale: 'en',
+    locale: 'zh',
     globalInjection: true,
     fallbackLocale: 'en',
     messages,

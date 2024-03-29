@@ -281,7 +281,12 @@ const routes: RouteRecordRaw[] = [
         name: 'tables',
         component: () => import(/* webpackChunkName: "tables" */ '../views/tables.vue'),
     },
-
+    {
+        path: '/task_main',
+        name: 'task_main',
+        component: () => import(/* webpackChunkName: "tables" */ '../views/task_main.vue'),
+    },
+    
     //datatables
     {
         path: '/datatables/basic',
