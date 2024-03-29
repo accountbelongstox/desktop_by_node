@@ -14,7 +14,7 @@ set "second=%datetime:~12,2%"
 set "timestamp=%year%-%month%-%day%@%hour%-%minute%-%second%"
 set "core_node_dir=%~dp0core_node\"
 
-call :ColorText 0a "%timestamp%"
+call :ColorText 0a "Submitgithub"
 echo.
 call :ColorText 0C "%timestamp%"
 echo.
@@ -38,6 +38,7 @@ git add .
 git commit -m "%timestamp%"
 git push --set-upstream origin main
 call :ColorText 2F "----------------------------------------------------------------" 
+echo.
 echo.
 
 if exist "%core_node_dir%" (
