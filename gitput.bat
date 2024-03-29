@@ -28,8 +28,8 @@ call :ColorText 4e "%timestamp%"
 echo.
 
 call :ColorText 0a "Entering:" 
-echo %cd%
 echo.
+echo %cd%
 call :ColorText 0a "--------------------------------" 
 echo.
 git remote -v
