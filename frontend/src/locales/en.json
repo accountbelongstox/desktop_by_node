@@ -1,7 +1,8 @@
 {
     "dashboard": "Dashboard",
     "sales": "Sales",
-    "desktop": "桌面管理",
+    "desktop": "Apps",
+    "task_main": "Tasks-Manager",
     "analytics": "Analytics",
     "apps": "Apps",
     "components": "Components",

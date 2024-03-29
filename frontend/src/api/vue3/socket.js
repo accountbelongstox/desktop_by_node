@@ -5,7 +5,7 @@ import mittEvent from '@/api/vue3/mitt.js';
 let isConnecting = false
 let socketing = null
 let socketingCount = 0
-let debug = false
+let debug = true
 
 class Socket {
     queue = [];

@@ -76,6 +76,9 @@
                                         <router-link to="/" @click="toggleMobileMenu">{{ $t('desktop') }}</router-link>
                                     </li>
                                     <li>
+                                        <router-link to="/task_main" @click="toggleMobileMenu">{{ $t('task_main') }}</router-link>
+                                    </li>
+                                    <li>
                                         <router-link to="/analytics" @click="toggleMobileMenu">{{ $t('analytics') }}</router-link>
                                     </li>
                                     <li>

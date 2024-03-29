@@ -32,7 +32,7 @@ class DataSender {
         seen.delete(obj);
         return result;
     }
-//the method in queue is not stand for request method,it's a users' action to server
+
     async addToQueue(method, url, data = {}, callback){
         this.queue.push({
             method,
@@ -96,7 +96,7 @@ class DataSender {
             return false;
         }
     }
-
+    
     async send(param, method = 'POST', url) {
         if (!url) url = this.getApiUrl();
         try {
@@ -147,7 +147,7 @@ class DataSender {
             console.error('Error sending data to server:', error);
             return null;
         }
-    }    
+    }
   }
   export default new DataSender();
   
