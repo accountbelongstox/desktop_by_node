@@ -1,6 +1,9 @@
 @echo off
-setlocal
-REM YYYY-MM-DD HH:MM:SS
+SETLOCAL EnableDelayedExpansion
+for /F "tokens=1,2 delims=#" %%a in ('"prompt #$H#$E# & echo on & for %%b in (1) do rem"') do (
+  set "DEL=%%a"
+)
+
 for /f "delims=" %%a in ('wmic OS Get localdatetime ^| find "."') do set datetime=%%a
 set "year=%datetime:~0,4%"
 set "month=%datetime:~4,2%"
@@ -8,12 +11,43 @@ set "day=%datetime:~6,2%"
 set "hour=%datetime:~8,2%"
 set "minute=%datetime:~10,2%"
 set "second=%datetime:~12,2%"
-set "timestamp=%year%-%month%-%day% %hour%:%minute%:%second%"
+set "timestamp=%year%-%month%-%day%-%hour%-%minute%-%second%"
+set "core_node_dir=%~dp0core_node\"
 
+call :ColorText 0a "%timestamp%"
+echo.
+call :ColorText 0C "%timestamp%"
+echo.
+call :ColorText 0b "%timestamp%"
+echo.
+call :ColorText 19 "%timestamp%"
+echo.
+call :ColorText 2F "%timestamp%"
+echo.
+call :ColorText 4e "%timestamp%"
+echo.
 
-REM git
+call :ColorText 0a "Entering %cd%" 
+echo.
+git remote -v
+call :ColorText 0a "Current working directory: %cd%"
+echo.
 git add .
 git commit -m "%timestamp%"
 git push --set-upstream origin main
 
-endlocal
+if exist "%core_node_dir%" (
+    cd /d "%core_node_dir%"
+    echo Entering %core_node_dir%
+    git remote -v
+    echo Current working directory: %cd%
+    git add .
+    git commit -m "%timestamp%"
+    git push --set-upstream origin main
+)
+goto :eof
+
+:ColorText
+<nul set /p ".=%DEL%" > "%~2"
+findstr /v /a:%1 /R "^$" "%~2" nul
+
