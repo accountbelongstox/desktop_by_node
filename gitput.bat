@@ -31,6 +31,7 @@ call :ColorText 0a "Entering"
 echo.
 echo %cd%
 call :ColorText 0a "--------------------------------" 
+echo.
 git remote -v
 call :ColorText 0a "--------------------------------" 
 echo.
