@@ -37,6 +37,9 @@ call :ColorText 0a "--------------------------------"
 echo.
 git add .
 git commit -m "%timestamp%"
+git pull
+git add .
+git commit -m "%timestamp%"
 git push --set-upstream origin main
 echo.
 call :ColorText 2F "----------------------------------------------------------------" 
@@ -53,6 +56,9 @@ if exist "%core_node_dir%" (
     call :ColorText 0a "--------------------------------" 
     echo.
     echo Current working directory: %cd%
+    git add .
+    git commit -m "%timestamp%"
+    git pull
     git add .
     git commit -m "%timestamp%"
     git push --set-upstream origin main
