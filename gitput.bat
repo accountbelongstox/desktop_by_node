@@ -1,5 +1,5 @@
 @echo off
-setlocal
+SETLOCAL EnableDelayedExpansion
 REM YYYY-MM-DD HH:MM:SS
 for /f "delims=" %%a in ('wmic OS Get localdatetime ^| find "."') do set datetime=%%a
 set "year=%datetime:~0,4%"
@@ -14,20 +14,18 @@ set "green=\033[92m"
 set "reset=\033[0m"
 
 
-echo %green%Entering %cd%
+call :ColorText 0a "Entering %cd%" 
 git remote -v
-echo Current working directory: %cd%
-echo %reset%
+call :ColorText 0a "Current working directory: %cd%"
 git add .
 git commit -m "%timestamp%"
 git push --set-upstream origin main
 
 if exist "%core_node_dir%" (
     cd /d "%core_node_dir%"
-    echo %green%Entering %core_node_dir%
+    echo Entering %core_node_dir%
     git remote -v
     echo Current working directory: %cd%
-    echo %reset%
     git add .
     git commit -m "%timestamp%"
     git push --set-upstream origin main
