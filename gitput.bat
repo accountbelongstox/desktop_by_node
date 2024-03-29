@@ -38,10 +38,12 @@ git add .
 git commit -m "%timestamp%"
 git push --set-upstream origin main
 call :ColorText 0a "--------------------------------" 
+echo.
 
 if exist "%core_node_dir%" (
     cd /d "%core_node_dir%"
-    echo Entering %core_node_dir%
+    call :ColorText 0a "Entering--" 
+    echo %cd%
     git remote -v
     echo Current working directory: %cd%
     git add .
