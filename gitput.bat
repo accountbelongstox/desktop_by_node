@@ -43,12 +43,18 @@ echo.
 if exist "%core_node_dir%" (
     cd /d "%core_node_dir%"
     call :ColorText 0a "Entering--" 
-    echo %cd%
+    echo %core_node_dir%
+    call :ColorText 0a "--------------------------------" 
+    echo.
     git remote -v
+    call :ColorText 0a "--------------------------------" 
+    echo.
     echo Current working directory: %cd%
     git add .
     git commit -m "%timestamp%"
     git push --set-upstream origin main
+    call :ColorText 0a "--------------------------------" 
+    echo.
 )
 goto :eof
 
