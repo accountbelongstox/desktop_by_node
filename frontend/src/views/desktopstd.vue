@@ -619,7 +619,7 @@ const handleContextMenu = (event, ele) => {
 const getSoftTileHeight = (software: any) => {
     let height = software.icon_width / 3 //it always less than 20 so can'tchange height after if
     if (height < 20) height = 50 //origin data is 20,it can change icon's height quitely
-    const margin = 0 //software.icon_width / 6 
+    const margin = 0 //software.icon_width / 6
     return { height, margin };
 };
 const getSoftTileStyle = (software: any) => {
@@ -656,8 +656,8 @@ const groupStyle = (group: any) => {
     let style_width = css;
     let app_region = `-webkit-app-region: no-drag;-webkit-user-select: none;`;
     let margin = `margin-right: 5px;`;
-    return `${app_region}${style_width}${margin};position: relative;background:none;`; 
-    
+    return `${app_region}${style_width}${margin};position: relative;background:none;`;
+
 }
 const getIconStyle = (software: any) => {
     let imag_gray = '';
