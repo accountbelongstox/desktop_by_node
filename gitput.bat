@@ -30,8 +30,9 @@ echo.
 call :ColorText 0a "Entering" 
 echo.
 echo %cd%
+call :ColorText 0a "--------------------------------" 
 git remote -v
-call :ColorText 0a "Current_working_directory:%cd%"
+call :ColorText 0a "--------------------------------" 
 echo.
 git add .
 git commit -m "%timestamp%"
