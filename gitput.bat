@@ -12,6 +12,7 @@ set "timestamp=%year%-%month%-%day% %hour%:%minute%:%second%"
 set "core_node_dir=%~dp0core_node\"
 
 REM git
+git remote -v
 git add .
 git commit -m "%timestamp%"
 git push --set-upstream origin main
