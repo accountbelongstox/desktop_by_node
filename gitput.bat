@@ -37,6 +37,7 @@ echo.
 git add .
 git commit -m "%timestamp%"
 git push --set-upstream origin main
+call :ColorText 0a "--------------------------------" 
 
 if exist "%core_node_dir%" (
     cd /d "%core_node_dir%"
