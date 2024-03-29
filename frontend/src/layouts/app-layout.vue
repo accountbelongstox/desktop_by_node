@@ -86,6 +86,7 @@
     const getClassNames = () => {
         return {
             "p-6": !store.desktopRoute,
+            
             animation: true
         };
     };
