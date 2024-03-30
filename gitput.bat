@@ -39,7 +39,6 @@ echo.
 echo.
 call :ColorText 2F "----------------------------------------------------------------" 
 echo.
-echo.
 git add .
 git commit -m "%timestamp%"
 git pull
@@ -65,7 +64,6 @@ if exist "%core_node_dir%" (
     echo.
     call :ColorText 2F "----------------------------------------------------------------" 
     echo.
-    echo.
     git add .
     git commit -m "%timestamp%"
     git pull
@@ -79,6 +77,7 @@ goto :eof
 
 :ColorText
 <nul set /p ".=%DEL%" > "%~2"
+echo "%~2"
 findstr /v /a:%1 /R "^$" "%~2" nul
 del "%~2"
 
