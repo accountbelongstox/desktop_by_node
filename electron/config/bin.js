@@ -10,7 +10,7 @@ module.exports = {
   dev: {
     frontend: {
       directory: './frontend',
-      cmd:'D:/lang_compiler/node-v18.17.0-win-x64/npm.cmd',
+      cmd:'D:/lang_compiler/node-v18.16.0-win-x64/npm.cmd',
       args: ['run', 'dev'],
       protocol: 'http://',
       hostname: 'localhost',
@@ -30,7 +30,7 @@ module.exports = {
    */
   build: {
     directory: './frontend',
-    cmd:'D:/lang_compiler/node-v18.17.0-win-x64/npm.cmd',
+    cmd:'D:/lang_compiler/node-v18.16.0-win-x64/npm.cmd',
     args: ['run', 'build'],
   },
 
