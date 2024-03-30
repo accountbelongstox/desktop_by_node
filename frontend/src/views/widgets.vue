@@ -1235,7 +1235,7 @@
                             </div>
                             <div>
                                 <h5 class="font-semibold dark:text-white-light">
-                                    New project created : <a href="javascript:;" class="text-success">[VRISTO Admin Template]</a>
+                                    New project created : <a href="javascript:;" class="text-success">[DevOps Admin Template]</a>
                                 </h5>
                                 <p class="text-white-dark text-xs">27 Feb, 2020</p>
                             </div>

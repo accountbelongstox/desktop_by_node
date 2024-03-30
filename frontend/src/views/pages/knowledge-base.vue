@@ -105,7 +105,7 @@
                                 stroke-linecap="round"
                             />
                         </svg>
-                        <span class="text-primary">How to install VRISTO Admin</span>
+                        <span class="text-primary">How to install DevOps Admin</span>
                         <div class="ltr:ml-auto rtl:mr-auto flex">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 ltr:mr-2 rtl:ml-2">
                                 <path

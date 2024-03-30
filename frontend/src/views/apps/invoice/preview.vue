@@ -115,7 +115,7 @@
             <div class="ltr:text-right rtl:text-left px-4">
                 <div class="space-y-1 mt-6 text-white-dark">
                     <div>13 Tetrick Road, Cypress Gardens, Florida, 33884, US</div>
-                    <div>vristo@gmail.com</div>
+                    <div>DevOpsByDDSJ@gmail.com</div>
                     <div>+1 (070) 123-4567</div>
                 </div>
             </div>
