@@ -1561,7 +1561,7 @@
 
     const defaultData = ref({
         id: null,
-        from: 'vristo@mail.com',
+        from: 'DevOpsByDDSJ@mail.com',
         to: '',
         cc: '',
         title: '',

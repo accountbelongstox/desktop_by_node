@@ -116,7 +116,7 @@
                     </div>
                     <div class="d-flex align-items-center justify-content-between">
                         <div class="d-flex" :id="'icon_' + group.gid"
-                            style="flex-wrap: wrap; display: flex; justify-content: space-around;">
+                            style="flex-wrap: wrap; display: flex; justify-content: flex-start;">
                             <div v-for="(software, sIndex) in group.softwareList" :key="sIndex"
                                 class="aid_container software-hover flex justify-center"
                                 @contextmenu="($event) => handleContextMenu($event, software)"
@@ -830,7 +830,7 @@ function getLevelPath(apath: string, n: number, x: any) {
     border-radius: 10px;
     position: relative;
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: space-between
 }
 
@@ -869,14 +869,11 @@ function getLevelPath(apath: string, n: number, x: any) {
 
 .install-button a,
 .install-button span {
-    position: absolute;
-    top: 0;
-    left: 0;
     border-radius: 5px;
     width: 100%;
     display: block;
     background-color: #f0f0f0;
-    height: 150%;
+    height: 100%;
     line-height: 20px;
     text-align: center;
     background-color: #f0f0f0;
@@ -890,7 +887,7 @@ function getLevelPath(apath: string, n: number, x: any) {
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 1;
+    z-index: 1000;
 }
 
 .spin_chart_sentence {

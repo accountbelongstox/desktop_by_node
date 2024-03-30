@@ -3,8 +3,8 @@ const { Service } = require('ee-core');
 const Log = require('ee-core/log');
 const Ps = require('ee-core/ps');
 const HttpClient = require('ee-core/httpclient');
-const {gdir} = require('../../../core_node/globalvars.js');
-const {strtool, file} = require('../../../core_node/utils.js');
+const { gdir } = require('../../../core_node/globalvars.js');
+const { strtool, file } = require('../../../core_node/utils.js');
 
 
 class SoftlistService extends Service {
@@ -68,8 +68,8 @@ class SoftlistService extends Service {
     async getSoftlistFromApiV2() {
         const res = [];
         const staticApiUrl = await gdir.getLocalStaticApiTestUrl()
-        const ismanagerFile = gdir.getLocalFile('manager_rule.ini')
-        const softlistGroupConfigFile = file.isFile(ismanagerFile) ? `soft_group_v2.json`: `soft_group_dev_v2.json` 
+        const ismanagerFile = gdir.getLocalInfoFile('.manager_rule.ini')
+        const softlistGroupConfigFile = file.isFile(ismanagerFile) ? `soft_group_v2.json` : `soft_group_dev_v2.json`
         try {
             const hc = new HttpClient();
             const softlistApiUrl = staticApiUrl + `softlist/static_src/software_config/${softlistGroupConfigFile}`
@@ -85,7 +85,7 @@ class SoftlistService extends Service {
             if (result.code !== 'success') {
                 Log.error('[getSoftlistFromApiV2]: res error result:%j', strtool.truncate(result));
             }
-            return result; 
+            return result;
         } catch (e) {
             Log.error('[getSoftlistFromApiV2]:  ERROR ', e);
         }

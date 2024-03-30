@@ -125,7 +125,7 @@
                         </a>
                     </li>
                 </ul>
-                <p class="text-center">© 2022. <router-link to="/" class="router-link-active text-primary">VRISTO</router-link> All Rights Reserved.</p>
+                <p class="text-center">© 2022. <router-link to="/" class="router-link-active text-primary">DevOps</router-link> All Rights Reserved.</p>
             </div>
         </div>
         <div class="bg-[#060818] w-1/2 min-h-screen hidden lg:flex items-center justify-center p-4">
