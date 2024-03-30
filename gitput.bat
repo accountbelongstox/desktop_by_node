@@ -35,6 +35,11 @@ echo.
 git remote -v
 call :ColorText 0a "--------------------------------" 
 echo.
+echo.
+echo.
+call :ColorText 2F "----------------------------------------------------------------" 
+echo.
+echo.
 git add .
 git commit -m "%timestamp%"
 git pull
@@ -56,6 +61,11 @@ if exist "%core_node_dir%" (
     call :ColorText 0a "--------------------------------" 
     echo.
     echo Current working directory: %cd%
+    echo.
+    echo.
+    call :ColorText 2F "----------------------------------------------------------------" 
+    echo.
+    echo.
     git add .
     git commit -m "%timestamp%"
     git pull
