@@ -46,7 +46,7 @@ git add .
 git commit -m "%timestamp%"
 git push --set-upstream origin main
 echo.
-call :ColorText 2F "----------------------------------------------------------------" 
+call :ColorText 19 "----------------------------------------------------------------" 
 echo.
 echo.
 
@@ -70,7 +70,7 @@ if exist "%core_node_dir%" (
     git add .
     git commit -m "%timestamp%"
     git push --set-upstream origin main
-    call :ColorText 0a "--------------------------------" 
+    call :ColorText 19 "----------------------------------------------------------------" 
     echo.
 )
 goto :eof
