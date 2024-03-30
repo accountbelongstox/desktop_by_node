@@ -77,7 +77,7 @@ goto :eof
 
 :ColorText
 <nul set /p ".=%DEL%" > "%~2"
-echo "%~2"
+REM echo "%~2"
 findstr /v /a:%1 /R "^$" "%~2" nul
 del "%~2"
 
