@@ -14,17 +14,17 @@ set "second=%datetime:~12,2%"
 set "timestamp=%year%-%month%-%day%@%hour%-%minute%-%second%"
 set "core_node_dir=%~dp0core_node\"
 
-call :ColorText 0a "Submitgithub"
+call :ColorText 0a "-------------------"
 echo.
-call :ColorText 0C "startSubmit"
+call :ColorText 0C "Submit_github"
 echo.
-call :ColorText 0b "startSubmit"
+call :ColorText 0b "-------------------"
 echo.
-call :ColorText 19 "startSubmit"
+call :ColorText 19 "-------------------"
 echo.
 call :ColorText 2F "%timestamp%"
 echo.
-call :ColorText 4e "startSubmit"
+call :ColorText 4e "-------------------"
 echo.
 
 echo.
