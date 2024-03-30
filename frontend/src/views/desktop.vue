@@ -170,7 +170,8 @@
                                         </div>
                                         <div class="show-title">
                                             <h6 class="mb-0 softname_title" :class="getTitleClass(software)">
-                                                <span class="softname_titlelinear font-bold">{{ software.basename }}</span>
+                                                <span class="softname_titlelinear font-bold">{{ software.basename
+                                                    }}</span>
                                             </h6>
                                         </div>
                                     </div>
@@ -207,7 +208,8 @@
                         <div class="dropdown" v-for="(lang, index) in basicEnvList.langs" :key="index">
                             <Popper :placement="store.rtlClass === 'rtl' ? 'bottom-start' : 'bottom-end'"
                                 offsetDistance="0" class="align-middle">
-                                <button type="button" class="btn btn-sm dropdown-toggle pl-2 pr-2 bg-white text-black rounded-lg"
+                                <button type="button"
+                                    class="btn btn-sm dropdown-toggle pl-2 pr-2 bg-white text-black rounded-lg"
                                     :style="{ borderColor: lang.borderColor || '#ffffff' }">
                                     <img class="w-10 h-10 dark:ring-dark rounded-lg overflow-hidden object-cover"
                                         :src="'/assets/icons/' + lang.icon || 'default.png'"
@@ -619,7 +621,7 @@ const handleContextMenu = (event, ele) => {
 const getSoftTileHeight = (software: any) => {
     let height = software.icon_width / 3 //it always less than 20 so can'tchange height after if
     if (height < 20) height = 50 //origin data is 20,it can change icon's height quitely
-    const margin = 0 //software.icon_width / 6 
+    const margin = 0 //software.icon_width / 6
     return { height, margin };
 };
 const getSoftTileStyle = (software: any) => {
@@ -656,15 +658,15 @@ const groupStyle = (group: any) => {
     let style_width = css;
     let app_region = `-webkit-app-region: no-drag;-webkit-user-select: none;`;
     let margin = `margin-right: 5px;`;
-    return `${app_region}${style_width}${margin};position: relative;background:none;`; 
-    
+    return `${app_region}${style_width}${margin};position: relative;background:none;`;
+
 }
 const getIconStyle = (software: any) => {
     let imag_gray = '';
     if (!software.isExist) {
         const installingProgress = software.installingProgress ? 100 - parseInt(software.installingProgress) : 90
-        let opacity = 100- installingProgress
-        if(opacity < 70)opacity = 70
+        let opacity = 100 - installingProgress
+        if (opacity < 70) opacity = 70
         imag_gray = `grayscale(${installingProgress}%) opacity(${opacity}%)`;
     }
     let imgStyle = `width: ${software.icon_width}px; height: ${software.icon_width}px; filter: ${imag_gray};`;
