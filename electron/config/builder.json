@@ -1,7 +1,7 @@
 {
-  "productName": "pdd_shanghuo_zhuaqu",
-  "appId": "com.gm-pdd.www",
-  "copyright": "© 2023 拼多多自动上货(抓取)软件 版权微信(Ch9816b)., Ltd.",
+  "productName": "DevOps",
+  "appId": "com.12gm.www",
+  "copyright": "© 动点世纪开发平台., Ltd.",
   "directories": {
     "output": "out"
   },
@@ -24,12 +24,12 @@
     "oneClick": false,
     "allowElevation": true,
     "allowToChangeInstallationDirectory": true,
-    "installerIcon": "build/icons/icon.ico",
-    "uninstallerIcon": "build/icons/icon.ico",
-    "installerHeaderIcon": "build/icons/icon.ico",
+    "installerIcon": "public/icons/icon.ico",
+    "uninstallerIcon": "public/icons/icon.ico",
+    "installerHeaderIcon": "public/icons/icon.ico",
     "createDesktopShortcut": true,
     "createStartMenuShortcut": true,
-    "shortcutName": "拼多多上货(抓取)"
+    "shortcutName": "DevOps"
   },
   "mac": {
     "icon": "build/icons/icon.icns",
@@ -38,7 +38,7 @@
     "hardenedRuntime": false
   },
   "win": {
-    "icon": "build/icons/icon.ico",
+    "icon": "public/icons/icon.ico",
     "artifactName": "${productName}-${os}-${version}-${arch}.${ext}",
     "target": [
       {

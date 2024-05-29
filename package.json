@@ -47,7 +47,7 @@
     "@electron/rebuild": "^3.6.0",
     "debug": "^4.3.3",
     "ee-bin": "^1.4.0",
-    "electron": "^21.4.4",
+    "electron": "^30.0.8",
     "electron-builder": "^23.6.0",
     "eslint": "^5.13.0",
     "eslint-plugin-prettier": "^3.0.1",
